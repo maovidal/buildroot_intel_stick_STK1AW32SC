@@ -67,7 +67,7 @@ It has been modified and extended by Mauricio Vidal from [VIDAL & ASTUDILLO Ltda
 [docker_python3_defconfig]:external/configs/docker_python3_defconfig
 [external_tree]:external
 [external_tree_doc]:external/README.md
-[journey]:[the_journey.md]
+[journey]:the_journey.md
 [br2_external]:http://buildroot.uclibc.org/downloads/manual/manual.html#outside-br-custom
 [docker_blog]:https://blog.docker.com/2013/06/create-light-weight-docker-containers-buildroot/
 [migrating_buildroot]:http://buildroot.uclibc.org/downloads/manual/manual.html#migrating-from-ol-versions
