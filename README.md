@@ -1,6 +1,6 @@
 # Notice:
 
-The sole purpose of this repository is to generate an image based on buildroot 2021.11.1 that can be flashed on the internal eMMC of the Intel Stick STK1AW32SC, which is based on [Intel Atom x5-Z8300][is_spec]
+The sole purpose of this repository is to generate an image based on `buildroot 2021.11.1` that can be flashed on the internal eMMC of the Intel Stick STK1AW32SC, which is based on [Intel Atom x5-Z8300][is_spec]
 
 # Quick setup:
 
