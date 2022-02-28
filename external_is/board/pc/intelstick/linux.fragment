@@ -49,6 +49,9 @@ CONFIG_MFD_AXP20X_I2C=m
 CONFIG_USB_USBNET=m
 CONFIG_USB_UAS=m
 
+# This is required on the Intel Stick for the eMMC 
+CONFIG_X86_INTEL_LPSS=y
+
 # USB 3.0 3 port HUb Gigabit Ethernet Adapter
 CONFIG_USB_NET_AX88179_178A=m
 
