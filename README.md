@@ -1,149 +1,50 @@
-# Buildroot
+# Notice:
 
-A Docker image for using [Buildroot][buildroot]. It can be found on [Docker Hub][hub].
+The sole purpose of this repository is to generate an image based on buildroot 2021.11.1 that can be flashed on the internal eMMC of the Intel Stick STK1AW32SC, which is based on [Intel Atom x5-Z8300][is_spec]
 
-## Quick Tips
+# Quick setup:
 
-* Before start, be sure to set Docker Engine configuration on the host allows enough the disk space, processors and other resources.
-
-* To get a clone, use at the host:
+1. Get a clone of this repo:
 ``` shell
-git clone https://github.com/vidalastudillo/docker-buildroot
+git clone https://github.com/MrMauro/buildroot_intel_stick_STK1AW32SC
 ```
 
-* Check [migrating Buildroot][migrating_buildroot] if you change the Buildroot version on the Dockerfile.
-
-## Get started
-
-1. To get started build the Docker image.
+2. Build the Docker image:
 
 ``` shell
 docker build -t "advancedclimatesystems/buildroot" .
 ```
 
-2. Create a [data-only container][data-only] to use as build and download
-cache and to store your build products.
+3. Create a [data-only container][data-only]:
 
 ``` shell
 docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo "Data only."
 ```
 
 This container has 2 volumes at `/root/buildroot/dl` and `/buildroot_output`.
-Buildroot downloads al data to the first volume, the last volume is used as build cache, cross compiler and build results.
+Buildroot downloads all data to the first volume, the last volume is used as build cache, cross compiler and build results.
+Then, in your host, you'll find the folder `images` and  `target` (The last one provided just to ease checking the building process).
 
-## Usage
+4. Setup the external folder and load the default configuration:
+
+``` shell
+./scripts/run.sh make BR2_EXTERNAL=/root/buildroot/external_is menuconfig
+./scripts/run.sh make intelstick_defconfig
+```
+
+That replaces the parent external folder of this fork.
+
+# Usage
 
 A small script has been provided to make using the container a little easier.
-It's located at [scripts/run.sh][run.sh]. Instructions below show how to build a kernel for the Raspberry Pi using the a defconfig provided by Buildroot.
+It's located at [scripts/run.sh][run.sh].
+
+Then you can use usual commands like this:
 
 ``` shell
-./scripts/run.sh make raspberrypi2_defconfig menuconfig
+./scripts/run.sh make menuconfig
 ./scripts/run.sh make
 ```
-
-Build products are stored inside the container at `/buildroot_output/images`.
-Because `run.sh` mounts the local folder `images/` at this place the build products are also stored on the host.
-
-## External tree
-
-To use the custom external tree using the mechanism [described in the documentation][br2_external] related to the `BR2_EXTERNAL` environment variable, the following is required to be called once.
-
-``` shell
-./scripts/run.sh make BR2_EXTERNAL=/root/buildroot/external menuconfig
-```
-
-From now on, the menuconfig will be aware of the content of the external tree and its identification (By reading the `external.desc` content).
-
-To verify the current settings, an inspection of the internal `br2-external.mk` can be done like this:
-
-``` shell
-./scripts/run.sh make
-```
-
-And once inside the container:
-
-``` shell
-cat /buildroot_output/.br2-external.mk
-```
-
-The mechanism related to `BR2_EXTERNAL` is helpful to reference the content of the tree in configuration files. For example, if the `name` defined in `external.desc` is `MYRPI2CFG`, then the `BR2_EXTERNAL_MYRPI2CFG_PATH` can be used to reference absolute paths.
-
-This is useful to tell buildroot where to save the configuration selecting something like this in the `menuconfig` (Assuming the previous defined `MYRPI2CFG` name):
-
-    --> Build options --> Location to save buildroot config: $(BR2_EXTERNAL_MYRPI2CFG_PATH)/configs/my_defconfig
-    Exit menuconfig (choose yes to Save) and do:
-
-To remove the external tree, an empty value can be used like this:
-
-``` shell
-./scripts/run.sh make BR2_EXTERNAL='' menuconfig
-```
-
-## Build with existing config
-
-Once the external tree has been configured as described in the previous section (in order to make buildroot be aware of it), the available configurations can be queried like this:
-
-```shell
-./scripts/run.sh make list-defconfigs
-```
-
-To demonstrate its use, this repository contains a configuration to build a minimal root filesystem, with Python 3. This config is located at [external/configs/docker_python3_defconfig][docker_python3_defconfig].
-
-Selecting that custom config, cleaning a previous build and making it can be accomplished like this:
-
-```
-./scripts/run.sh make docker_python3_defconfig
-./scripts/run.sh make clean all
-./scripts/run.sh make
-```
-
-A modified configuration can be saved using something like this (replacing the text 'mycustom'):
-
-```shell
-./scripts/run.sh make BR2_DEFCONFIG=/root/buildroot/external/configs/mycustom_defconfig savedefconfig
-```
-
-## Kivy build
-
-There is an example about building different images including a Python Kivy to run on a Raspberry Pi 2 [based on a post][evgueni_post] by [evgueni][evgueni]. It uses the [external tree][external_tree] and it is [documented here][external_tree_doc]
-
-## Docker image from root filesystem
-
-Import the root filesystem in to Docker to create an image run it and start a container.
-
-```shell
-docker import - dietfs < images/rootfs.tar
-docker run --rm -ti dietfs sh
-```
-
-## Creating packages from private git repositories:
-
-The .mk can be defined like this when using Github:
-
-    THETEST_VERSION = main
-    THETEST_SITE = git@github.com:<your user name>/<repo name>
-    THETEST_SITE_METHOD = git
-
-Refrain to use `main` on the final version, to prevent issues [explained on the documentation][buildroot_generic_package].
-
-To make that work, the container has to be able to connect through SSH to GitHub:
-
-1. Follow the [documentation from GitHub about it][github_ssh].
-2. Place a folder named .ssh on the host computer with the generated identification and .PUB files to make those available to the container.
-
-To test this, get into the container:
-```shell
-./scripts/run.sh make
-```
-
-Once there, you have to get successful responses to commands like this:
-
-```shell
-ssh git@github.com
-git clone git@github.com:<your user name>/<repo name>
-```
-
-This has been produced thanks to the invaluable support of `y_morin` and `troglobit` from the #buildroot IRC Channel.
 
 ## License
 
@@ -168,3 +69,4 @@ It has been modified and extended by Mauricio Vidal from [VIDAL & ASTUDILLO Ltda
 [evgueni_post]:https://forums.raspberrypi.com/viewtopic.php?t=307052&sid=b8bbc7d25cf2b58cb6d4a35edd716d6a
 [github_ssh]:https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 [buildroot_generic_package]:https://buildroot.org/downloads/manual/manual.html#generic-package-reference
+[is_spec]:https://ark.intel.com/content/www/us/en/ark/products/91065/intel-compute-stick-stk1aw32sc.html

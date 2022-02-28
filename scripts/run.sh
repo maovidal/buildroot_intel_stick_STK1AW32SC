@@ -37,6 +37,7 @@ DOCKER_RUN="docker run
     --volumes-from buildroot_output
     -v $(pwd)/.ssh:/root/.ssh
     -v $(pwd)/external:$BUILDROOT_DIR/external
+    -v $(pwd)/external_is:$BUILDROOT_DIR/external_is
     -v $(pwd)/external_private:$BUILDROOT_DIR/external_private
     -v $(pwd)/rootfs_overlay:$BUILDROOT_DIR/rootfs_overlay
     -v $(pwd)/images:$OUTPUT_DIR/images
