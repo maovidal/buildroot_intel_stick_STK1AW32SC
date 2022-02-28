@@ -45,7 +45,8 @@ Then you can use usual commands like this:
 ./scripts/run.sh make menuconfig
 ./scripts/run.sh make
 ```
-## Journey
+
+# Journey
 
 Read about the steps I'm making to achieve the purpose of this fork on [the_journey][journey].
 
