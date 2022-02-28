@@ -34,3 +34,72 @@ CONFIG_MMC_SDRICOH_CS=m
 CONFIG_MISC_RTSX=m
 CONFIG_MISC_RTSX_PCI=m
 CONFIG_MISC_RTSX_USB=m
+
+#########
+# Intel Stick related
+# STK1AW32SC
+# Intel® Atom™ x5-Z8300
+# https://ark.intel.com/content/www/us/en/ark/products/91065/intel-compute-stick-stk1aw32sc.html
+#########
+
+# Chip
+CONFIG_MFD_AXP20X_I2C=m
+
+# Other
+CONFIG_USB_USBNET=m
+CONFIG_USB_UAS=m
+
+# USB 3.0 3 port HUb Gigabit Ethernet Adapter
+CONFIG_USB_NET_AX88179_178A=m
+
+# Intel Core/Core2/Atom temperature sensor
+CONFIG_SENSORS_CORETEMP=m
+
+# Persistent Store
+CONFIG_PSTORE=m
+
+# ACPI Watchdog Action Table (WDAT) 
+CONFIG_WDAT_WDT=m
+
+# Industrial I/O support
+CONFIG_IIO=m
+
+# X-Powers AXP288 Fuel Gauge      
+CONFIG_AXP288_FUEL_GAUGE=m
+
+# X-Powers AXP20X power button driver  
+CONFIG_INPUT_AXP20X_PEK=m
+
+# Kernel support for MISC binaries
+CONFIG_BINFMT_MISC=m
+
+# SUNRPC (Network formats?)
+SUNRPC=m
+
+# SquashFS 4.0 - Squashed file system support
+CONFIG_SQUASHFS=m
+CONFIG_PSTORE_ZSTD_COMPRESS=m
+
+# Overlay filesystem support
+CONFIG_OVERLAY_FS=m
+
+# Crypto support
+CONFIG_CRYPTO_AES=m
+CONFIG_CRYPTO_AES_X86_64=m
+CONFIG_CRYPTO_ECB=m
+CONFIG_CRYPTO_CRC32C_INTEL=m
+CONFIG_CRYPTO_AES_NI_INTEL=m
+CONFIG_CRYPTO_ANSI_CPRNG=m
+CONFIG_CRC_T10DIF=m
+CONFIG_CRYPTO_CRCT10DIF_PCLMUL=m
+CONFIG_CRYPTO_CRC32_PCLMUL=m
+CONFIG_CRYPTO_GHASH_CLMUL_NI_INTEL=m
+
+# Linear (append) mode 
+CONFIG_MD_LINEAR=m
+
+# Intel ICH LPC
+CONFIG_LPC_ICH=m
+
+# PXA2xx SSP SPI master
+CONFIG_SPI_PXA2XX=m
