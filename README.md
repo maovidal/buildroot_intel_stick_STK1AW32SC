@@ -48,7 +48,7 @@ Then you can use usual commands like this:
 
 # Journey
 
-Read about the steps I'm making to achieve the purpose of this fork on [the_journey][journey].
+Read about the steps I'm taking to achieve the purpose of this fork on [the_journey.md file][journey].
 
 
 ## License
