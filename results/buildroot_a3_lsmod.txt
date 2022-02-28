@@ -1,0 +1,24 @@
+Module                  Size  Used by    Not tainted
+sha256_generic         20480  0 
+cfg80211              286720  0 
+coretemp               16384  0 
+crct10dif_pclmul       16384  0 
+ax88179_178a           24576  0 
+crct10dif_common       16384  1 crct10dif_pclmul
+crc32_pclmul           16384  0 
+input_leds             16384  0 
+usbnet                 28672  1 ax88179_178a
+crc32c_intel           24576  0 
+led_class              16384  1 input_leds
+ghash_clmulni_intel    16384  0 
+aesni_intel           200704  0 
+aes_x86_64             20480  1 aesni_intel
+crypto_simd            16384  1 aesni_intel
+uas                    24576  0 
+cryptd                 20480  3 ghash_clmulni_intel,aesni_intel,crypto_simd
+axp20x_i2c             16384  0 
+glue_helper            16384  1 aesni_intel
+regmap_i2c             16384  1 axp20x_i2c
+axp20x                 28672  1 axp20x_i2c
+lpc_ich                24576  0 
+mfd_core               16384  2 axp20x,lpc_ich

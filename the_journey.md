@@ -54,8 +54,12 @@ Again, booting with the resulting image written on the USB works ok.
 
 Result:
 - Still `ls \dev\m*` does not show the expected mmcblk* folders.
-- The `lsmod` on my builtroot image now shows some of the new modules, but none of them seem to be related to the eMMC
+- The `lsmod` on my buildroot image [now shows some of the new modules][buildroot_a3_lsmod], but none of them seem to be related to the eMMC.
 
+# SSH
 
-[rasbian_lsmod]:rasbian_lsmod.txt
+To ease further work I have included SSH access to access the Stick from my PC. Password is `hi`
+
+[buildroot_a3_lsmod]:results/buildroot_a3_lsmod.txt
+[rasbian_lsmod]:results/rasbian_lsmod.txt
 [getoo_post]:https://forums.gentoo.org/viewtopic-t-1097672-start-0.html

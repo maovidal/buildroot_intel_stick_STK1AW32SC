@@ -65,3 +65,13 @@ BR2_TOOLCHAIN_BUILDROOT_CXX=y
 
 # Without this the device will complain at boot: failed to load regulatory.db
 BR2_PACKAGE_WIRELESS_REGDB=y
+
+# Network, Bash, SSH
+BR2_SYSTEM_DHCP="eth0"
+BR2_PACKAGE_DHCPCD=y
+BR2_SYSTEM_BIN_SH_BASH=y
+BR2_PACKAGE_OPENSSH=y
+BR2_TARGET_GENERIC_ROOT_PASSWD="hi"
+
+# Overlay
+BR2_ROOTFS_OVERLAY="$(BR2_EXTERNAL_MYISCFG_PATH)/board/pc/intelstick/overlay"
