@@ -1,0 +1,145 @@
+Module                  Size  Used by
+rfcomm                 86016  4
+fuse                  122880  3
+cmac                   16384  1
+cfg80211              774144  0
+bnep                   24576  2
+8021q                  40960  0
+garp                   16384  1 8021q
+stp                    16384  1 garp
+mrp                    20480  1 8021q
+llc                    16384  2 stp,garp
+btusb                  53248  0
+btrtl                  16384  1 btusb
+btbcm                  16384  1 btusb
+btintel                24576  1 btusb
+bluetooth             647168  31 btrtl,btintel,btbcm,bnep,btusb,rfcomm
+intel_rapl             24576  0
+intel_powerclamp       16384  0
+sg                     36864  0
+ax88179_178a           28672  0
+coretemp               16384  0
+usbnet                 49152  1 ax88179_178a
+mii                    16384  2 usbnet,ax88179_178a
+kvm_intel             233472  0
+kvm                   757760  1 kvm_intel
+drbg                   28672  1
+snd_intel_sst_acpi     16384  0
+ansi_cprng             16384  0
+snd_intel_sst_core     65536  1 snd_intel_sst_acpi
+ecdh_generic           24576  2 bluetooth
+snd_soc_sst_atom_hifi2_platform   110592  1 snd_intel_sst_core
+gpio_keys              20480  0
+rfkill                 28672  4 bluetooth,cfg80211
+axp288_fuel_gauge      24576  0
+industrialio           81920  1 axp288_fuel_gauge
+snd_soc_acpi_intel_match    24576  1 snd_intel_sst_acpi
+snd_soc_acpi           16384  2 snd_soc_acpi_intel_match,snd_intel_sst_acpi
+snd_soc_core          253952  1 snd_soc_sst_atom_hifi2_platform
+snd_hdmi_lpe_audio     28672  3
+irqbypass              16384  1 kvm
+crct10dif_pclmul       16384  0
+crc32_pclmul           16384  0
+efi_pstore             16384  0
+ghash_clmulni_intel    16384  0
+efivars                20480  1 efi_pstore
+intel_cstate           16384  0
+wdat_wdt               16384  0
+pcspkr                 16384  0
+axp20x_pek             16384  0
+snd_compress           24576  1 snd_soc_core
+snd_pcm               114688  3 snd_hdmi_lpe_audio,snd_soc_sst_atom_hifi2_platform,snd_soc_core
+snd_timer              36864  1 snd_pcm
+snd                    94208  12 snd_timer,snd_compress,snd_hdmi_lpe_audio,snd_soc_sst_atom_hifi2_platform,snd_soc_core,snd_pcm
+dw_dmac                16384  0
+dw_dmac_core           28672  1 dw_dmac
+soundcore              16384  1 snd
+pwm_lpss_platform      16384  0
+pwm_lpss               16384  1 pwm_lpss_platform
+evdev                  28672  17
+intel_int0002_vgpio    16384  1
+soc_button_array       16384  0
+pcc_cpufreq            16384  0
+acpi_pad               24576  0
+binfmt_misc            20480  1
+parport_pc             32768  0
+sunrpc                425984  1
+ppdev                  20480  0
+lp                     20480  0
+parport                57344  3 parport_pc,lp,ppdev
+efivarfs               16384  1
+ip_tables              28672  0
+x_tables               45056  1 ip_tables
+autofs4                49152  2
+squashfs               65536  1
+zstd_decompress        81920  1 squashfs
+xxhash                 16384  1 zstd_decompress
+loop                   36864  2
+overlay               131072  1
+nls_utf8               16384  1
+isofs                  49152  1
+sd_mod                 61440  5
+uas                    28672  0
+usb_storage            73728  4 uas
+scsi_mod              249856  4 sd_mod,usb_storage,uas,sg
+ext4                  745472  2
+crc16                  16384  2 bluetooth,ext4
+mbcache                16384  1 ext4
+jbd2                  122880  1 ext4
+fscrypto               32768  1 ext4
+ecb                    16384  0
+nls_ascii              16384  1
+nls_cp437              20480  1
+vfat                   20480  1
+fat                    86016  1 vfat
+hid_generic            16384  0
+usbhid                 57344  0
+hid                   139264  2 usbhid,hid_generic
+raid10                 57344  0
+raid456               172032  0
+async_raid6_recov      20480  1 raid456
+async_memcpy           16384  2 raid456,async_raid6_recov
+async_pq               16384  2 raid456,async_raid6_recov
+async_xor              16384  3 async_pq,raid456,async_raid6_recov
+async_tx               16384  5 async_pq,async_memcpy,async_xor,raid456,async_raid6_recov
+xor                    24576  1 async_xor
+raid6_pq              122880  3 async_pq,raid456,async_raid6_recov
+libcrc32c              16384  1 raid456
+crc32c_generic         16384  0
+raid1                  45056  0
+raid0                  20480  0
+multipath              16384  0
+linear                 16384  0
+md_mod                167936  6 raid1,raid10,raid0,linear,raid456,multipath
+dm_mirror              28672  0
+dm_region_hash         20480  1 dm_mirror
+dm_log                 20480  2 dm_region_hash,dm_mirror
+dm_mod                155648  2 dm_log,dm_mirror
+i915                 1736704  4
+crc32c_intel           24576  5
+mmc_block              45056  2
+i2c_algo_bit           16384  1 i915
+axp20x_i2c             16384  0
+drm_kms_helper        208896  1 i915
+axp20x                 28672  1 axp20x_i2c
+xhci_pci               16384  0
+xhci_hcd              266240  1 xhci_pci
+drm                   495616  5 drm_kms_helper,i915
+aesni_intel           200704  3
+aes_x86_64             20480  1 aesni_intel
+crypto_simd            16384  1 aesni_intel
+cryptd                 28672  3 crypto_simd,ghash_clmulni_intel,aesni_intel
+usbcore               294912  8 xhci_hcd,usbnet,usbhid,usb_storage,btusb,xhci_pci,uas,ax88179_178a
+glue_helper            16384  1 aesni_intel
+lpc_ich                28672  0
+mfd_core               16384  2 axp20x,lpc_ich
+usb_common             16384  1 usbcore
+thermal                20480  0
+video                  49152  1 i915
+sdhci_acpi             20480  0
+sdhci                  61440  1 sdhci_acpi
+mmc_core              176128  3 sdhci,mmc_block,sdhci_acpi
+i2c_designware_platform    16384  0
+i2c_designware_core    20480  1 i2c_designware_platform
+spi_pxa2xx_platform    28672  0
+button                 20480  0
