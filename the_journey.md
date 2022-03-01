@@ -90,10 +90,10 @@ Once built, the resulting image can be transferred to the USB boot drive (the *U
 - *USB boot* to boot the Intel Stick
 - *USB data* formatted with FAT, that will have a copy the `drive.img` file.
 
-After booting, assuming the *USB data* is on `/dev/sdb2` we issue the following to mount it:
+After booting, assuming the *USB data* is on `/dev/sdb1` we issue the following to mount it:
 
 ``` shell
-mount /dev/sdb2 /mnt
+mount /dev/sdb1 /mnt
 cd /mnt
 ```
 
