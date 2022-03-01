@@ -42,11 +42,13 @@ CONFIG_MISC_RTSX_USB=m
 # https://ark.intel.com/content/www/us/en/ark/products/91065/intel-compute-stick-stk1aw32sc.html
 #########
 
-# Chip
+# Multifunction device drivers
 CONFIG_MFD_AXP20X_I2C=m
 
-# Other
+# Multi-purpose USB Networking Framework
 CONFIG_USB_USBNET=m
+
+# USB Attached SCSI
 CONFIG_USB_UAS=m
 
 # This is required on the Intel Stick for the eMMC 
@@ -108,8 +110,12 @@ CONFIG_LPC_ICH=m
 CONFIG_SPI_PXA2XX=m
 
 # ##############################################################################
-# FAT
+# USB storage support
 # ##############################################################################
+
+CONFIG_SCSI=y
+CONFIG_BLK_DEV_SD=y
+CONFIG_USB_STORAGE=y
 
 CONFIG_FAT_FS=y
 CONFIG_VFAT_FS=y
