@@ -33,7 +33,7 @@ Buildroot downloads all data to the first volume, the last volume is used as bui
 ./scripts/run.sh make intelstick_defconfig
 ```
 
-As a result, in your host, those are the two relevant folders to be working on:
+These are the two relevant folders on your host:
 
 - `external_is`: the new external folder with the configs and other related files for this Intel Stick board.
 - `images`: with your valuable results.
