@@ -1,6 +1,6 @@
 # The problem
 
-My purpose is to generate an image based on buildroot 2021.11.1 that can be flashed on the internal eMMC of the Intel Stick STK1AW32SC, which is based on Intel Atom x5-Z8300
+My purpose is to generate an image based on `buildroot 2021.11.1` that can be flashed on the internal eMMC of the `Intel Stick STK1AW32SC`, which is based on Intel Atom x5-Z8300
 
 A vanilla image (using the default buildroot pc_x86_64_efi_defconfig) correctly boots from USB.
 However issuing `ls \dev\m*` does not report any `/dev/mmcblk*` folders related to the eMMC. That is expected as the vanilla Kernel does not have the MMC modules built in.
@@ -81,14 +81,16 @@ While I suspect it must be better not to use 'live' USB as source of the image (
 dd bs=4M if=./disk.img of=/dev/mmcblk0 conv=fsync oflag=direct
 ```
 
-However, this a better way to do it.
+However, this a better way to do it:
 
-The Kernel generated in the 4th attempt still lacks USB mass storage support. Here it is the change on the `linux.fragment` file:
+The Kernel generated in the 4th attempt still lacks USB mass storage support. Here it is the change on the `linux.fragment` file that includes it:
 https://github.com/MrMauro/buildroot_intel_stick_STK1AW32SC/commit/1cc0df7bcd0237914d25da751c215ac915447eec
 
-Once built, the resulting image can be transferred to the USB boot drive and also copied to a different USB drive so we get a bootable one, and another to be the source that we will copy to the eMMC.
+Once built, the resulting image can be transferred to the USB boot drive (the *USB boot*) and also *copied* to a different USB drive, which we will call the *USB data* to differentiate. The result should be:
+- *USB boot* to boot the Intel Stick
+- *USB data* formatted with FAT, that will have a copy the `drive.img` file.
 
-After booting, assuming the source of the image is on `/dev/sdb2` we issue the following to mount the USB with the image to transfer:
+After booting, assuming the *USB data* is on `/dev/sdb2` we issue the following to mount it:
 
 ``` shell
 mount /dev/sdb2 /mnt

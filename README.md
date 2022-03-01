@@ -2,6 +2,8 @@
 
 The sole purpose of this repository is to generate an image based on `buildroot 2021.11.1` that can be flashed on the internal eMMC of the Intel Stick STK1AW32SC, which is based on [Intel Atom x5-Z8300][is_spec]
 
+The source of this fork implements Docker containers to speed up the setup for this task.
+
 # Quick setup:
 
 1. Get a clone of this repo:
@@ -23,16 +25,20 @@ docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo
 
 This container has 2 volumes at `/root/buildroot/dl` and `/buildroot_output`.
 Buildroot downloads all data to the first volume, the last volume is used as build cache, cross compiler and build results.
-Then, in your host, you'll find the folder `images` and  `target` (The last one provided just to ease checking the building process).
 
-4. Setup the external folder and load the default configuration:
+4. Setup the new external folder and load the default configuration:
 
 ``` shell
 ./scripts/run.sh make BR2_EXTERNAL=/root/buildroot/external_is menuconfig
 ./scripts/run.sh make intelstick_defconfig
 ```
 
-That replaces the parent external folder of this fork.
+As a result, in your host, those are the two relevant folders to be working on:
+
+- `external_is`: the new external folder with the configs and other related files for this Intel Stick board.
+- `images`: with your valuable results.
+
+Also, the `target` folder is provided just to ease checking the building process.
 
 # Usage
 
@@ -43,15 +49,16 @@ Then you can use usual commands like this:
 
 ``` shell
 ./scripts/run.sh make menuconfig
-./scripts/run.sh make
+./scripts/run.sh make linux-rebuild
+./scripts/run.sh make linux-menuconfig
+./scripts/run.sh make all
 ```
 
 # Journey
 
-Read about the steps I'm taking to achieve the purpose of this fork on [the_journey.md file][journey].
+Read about the steps I took to achieve the purpose of this fork on the file [the_journey.md][journey].
 
-
-## License
+# License
 
 This software is licensed under Mozilla Public License.
 It is based on the original work by: 
