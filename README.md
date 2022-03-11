@@ -2,6 +2,7 @@
 
 The sole purpose of this repository is to generate an image based on `buildroot 2021.11.1` that can be flashed on the internal eMMC of the `Intel Stick STK1AW32SC`, which is based on [Intel Atom x5-Z8300][is_spec]
 
+
 # Quick setup:
 
 Besides using this repo in your existing Buildroot installation using the [external mechanism][br2_external], there is also the option to use this [docker-buildroot repo][docker_buildroot] that provides a fast and convenient way to start working right away.
@@ -26,7 +27,7 @@ git clone https://github.com/MrMauro/buildroot_intel_stick_STK1AW32SC externals/
 docker build -t "advancedclimatesystems/buildroot" .
 ```
 
-3. Create a [data-only container][data-only]:
+4. Create a [data-only container][data-only]:
 
 ``` shell
 docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo "Data only."
@@ -35,7 +36,7 @@ docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo
 This container has 2 volumes at `/root/buildroot/dl` and `/buildroot_output`.
 Buildroot downloads all data to the first volume, the last volume is used as build cache, cross compiler and build results.
 
-4. Setup the new external folder and load the default configuration:
+5. Setup the new external folder and load the default configuration:
 
 ``` shell
 ./scripts/run.sh make BR2_EXTERNAL=/root/buildroot/externals/STK1AW32SC menuconfig
@@ -48,6 +49,7 @@ These are the two relevant folders on your host:
 - `images`: with your valuable results.
 
 Also, the `target` folder is provided just to ease checking the building process.
+
 
 # Usage
 
@@ -63,17 +65,18 @@ Then you can use usual commands like this:
 ./scripts/run.sh make all
 ```
 
+
 # Journey
 
 Read about the steps I took to achieve the purpose of this fork on the file [the_journey.md][journey].
+
 
 # License
 
 This software is licensed under Mozilla Public License.
 
-&copy; 2022 Mauricio Vidal from [VIDAL & ASTUDILLO Ltda][va].
+&copy; 2022 Mauricio Vidal.
 
-[va]:https://www.vidalastudillo.com
 [docker_buildroot]:https://github.com/vidalastudillo/docker-buildroot
 [acs]:http://advancedclimate.nl
 [buildroot]:http://buildroot.uclibc.org/
