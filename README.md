@@ -52,7 +52,7 @@ Also, the `target` folder is provided just to ease checking the building process
 # Usage
 
 A small script has been provided to make using the container a little easier.
-It's located at [scripts/run.sh][run.sh].
+It's located at the folder `scripts/run.sh`.
 
 Then you can use usual commands like this:
 
@@ -79,7 +79,6 @@ This software is licensed under Mozilla Public License.
 [buildroot]:http://buildroot.uclibc.org/
 [data-only]:https://docs.docker.com/userguide/dockervolumes/
 [hub]:https://hub.docker.com/r/advancedclimatesystems/docker-buildroot/builds/
-[run.sh]:scripts/run.sh
 [docker_python3_defconfig]:external/configs/docker_python3_defconfig
 [external_tree]:external
 [external_tree_doc]:external/README.md
