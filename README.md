@@ -14,7 +14,7 @@ Those are the instructions for the later case:
 git clone https://github.com/vidalastudillo/docker-buildroot
 ```
 
-2. Get a clone of this repo to be placed at the folder 'externals/STK1AW32SC':
+2. Get a clone of this repo to be placed at the folder `externals/STK1AW32SC`:
 
 ``` shell
 git clone https://github.com/MrMauro/buildroot_intel_stick_STK1AW32SC externals/STK1AW32SC
@@ -70,6 +70,7 @@ Read about the steps I took to achieve the purpose of this fork on the file [the
 # License
 
 This software is licensed under Mozilla Public License.
+
 &copy; 2022 Mauricio Vidal from [VIDAL & ASTUDILLO Ltda][va].
 
 [va]:https://www.vidalastudillo.com
