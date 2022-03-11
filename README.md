@@ -1,17 +1,26 @@
 # Notice:
 
-The sole purpose of this repository is to generate an image based on `buildroot 2021.11.1` that can be flashed on the internal eMMC of the Intel Stick STK1AW32SC, which is based on [Intel Atom x5-Z8300][is_spec]
-
-The source of this fork implements Docker containers to speed up the setup for this task.
+The sole purpose of this repository is to generate an image based on `buildroot 2021.11.1` that can be flashed on the internal eMMC of the `Intel Stick STK1AW32SC`, which is based on [Intel Atom x5-Z8300][is_spec]
 
 # Quick setup:
 
-1. Get a clone of this repo:
+Besides using this repo in your existing Buildroot installation using the [external mechanism][br2_external], there is also the option to use this [docker-buildroot repo][docker_buildroot] that provides a fast and convenient way to start working right away.
+
+Those are the instructions for the later case:
+
+1. Get a clone of [docker-buildroot][docker_buildroot]:
+
 ``` shell
-git clone https://github.com/MrMauro/buildroot_intel_stick_STK1AW32SC
+git clone https://github.com/vidalastudillo/docker-buildroot
 ```
 
-2. Build the Docker image:
+2. Get a clone of this repo to be placed at the folder 'externals/STK1AW32SC':
+
+``` shell
+git clone https://github.com/MrMauro/buildroot_intel_stick_STK1AW32SC externals/STK1AW32SC
+```
+
+3. Build the Docker image:
 
 ``` shell
 docker build -t "advancedclimatesystems/buildroot" .
@@ -29,13 +38,13 @@ Buildroot downloads all data to the first volume, the last volume is used as bui
 4. Setup the new external folder and load the default configuration:
 
 ``` shell
-./scripts/run.sh make BR2_EXTERNAL=/root/buildroot/external_is menuconfig
+./scripts/run.sh make BR2_EXTERNAL=/root/buildroot/externals/STK1AW32SC menuconfig
 ./scripts/run.sh make intelstick_defconfig
 ```
 
 These are the two relevant folders on your host:
 
-- `external_is`: the new external folder with the configs and other related files for this Intel Stick board.
+- `external/STK1AW32SC`: the new external folder with the configs and other related files for this Intel Stick board.
 - `images`: with your valuable results.
 
 Also, the `target` folder is provided just to ease checking the building process.
@@ -61,11 +70,10 @@ Read about the steps I took to achieve the purpose of this fork on the file [the
 # License
 
 This software is licensed under Mozilla Public License.
-It is based on the original work by: 
-&copy; 2017 Auke Willem Oosterhoff and [Advanced Climate Systems][acs].
-It has been modified and extended by Mauricio Vidal from [VIDAL & ASTUDILLO Ltda][va].
+&copy; 2022 Mauricio Vidal from [VIDAL & ASTUDILLO Ltda][va].
 
 [va]:https://www.vidalastudillo.com
+[docker_buildroot]:https://github.com/vidalastudillo/docker-buildroot
 [acs]:http://advancedclimate.nl
 [buildroot]:http://buildroot.uclibc.org/
 [data-only]:https://docs.docker.com/userguide/dockervolumes/
