@@ -1,5 +1,5 @@
 # Based on the default buildroot_pc_x86_64_efi_defconfig 
-# of the buildroot 2021.11.1
+# of the buildroot 2021.11.1 and tested with 2022.08.1
 
 BR2_x86_64=y
 BR2_PACKAGE_HOST_LINUX_HEADERS_CUSTOM_4_19=y

@@ -1,13 +1,15 @@
 # Notice
 
-The sole purpose of this repository is to generate an image based on `buildroot 2021.11.1` that can be flashed on the internal eMMC of the `Intel Stick STK1AW32SC`, which is based on [Intel Atom x5-Z8300][is_spec]
+The sole purpose of this repository is to generate an image tested on `buildroot 2022.08.1` that can be flashed on the internal eMMC of the `Intel Stick STK1AW32SC`, which is based on [Intel Atom x5-Z8300][is_spec]
+
+Originally this repo started as a fork from this [Buildroot running in Docker repo][original_docker_buildroot_repo]. However, later it was stripped to contain only the relevant files of the external directory allowing it to be used with different developments setups.
 
 
 # Quick setup
 
-Besides using this repo in your existing Buildroot installation using the [external mechanism][br2_external], there is also the option to use this [docker-buildroot repo][docker_buildroot] that provides a fast and convenient way to start working right away.
+Besides using this repo in your existing Buildroot installation using the [external mechanism][br2_external], there is also the option to use this [docker-buildroot repo][docker_buildroot] that provides a fast and convenient way to start working right away and keep multiple and independent instances for different targets at the same time.
 
-Those are the instructions for the later case:
+Those are the instructions for the later case, as the ones to use your existing Buildroot installation are contained in Buildroot's documentation:
 
 1. Get a clone of [docker-buildroot][docker_buildroot]:
 
@@ -27,10 +29,10 @@ git clone https://github.com/MrMauro/buildroot_intel_stick_STK1AW32SC externals/
 docker build -t "advancedclimatesystems/buildroot" .
 ```
 
-4. Create a [data-only container][data-only]:
+4. Create a [data-only container][data-only]. The name will be used on the scripts to refer to this spacific build:
 
 ``` shell
-docker run -i --name buildroot_output advancedclimatesystems/buildroot /bin/echo "Data only."
+docker run -i --name br_output_STK1AW32SC advancedclimatesystems/buildroot /bin/echo "Data only for STK1AW32SC."
 ```
 
 This container has 2 volumes at `/root/buildroot/dl` and `/buildroot_output`.
@@ -39,30 +41,32 @@ Buildroot downloads all data to the first volume, the last volume is used as bui
 5. Setup the new external folder and load the default configuration:
 
 ``` shell
-./scripts/run.sh make BR2_EXTERNAL=/root/buildroot/externals/STK1AW32SC menuconfig
-./scripts/run.sh make intelstick_defconfig
+./externals/STK1AW32SC/run.sh make BR2_EXTERNAL=/root/buildroot/externals/STK1AW32SC menuconfig
+./externals/STK1AW32SC/run.sh make intelstick_defconfig
 ```
 
 These are the two relevant folders on your host:
 
-- `external/STK1AW32SC`: the new external folder with the configs and other related files for this Intel Stick board.
-- `images`: with your valuable results.
+- `externals/STK1AW32SC`: the new external folder with the configs and other related files for this Intel Stick board.
+- `images/STK1AW32SC`: with your valuable results.
 
-Also, the `target` folder is provided just to ease checking the building process.
+Also, the `target/STK1AW32SC` folder is provided just to ease checking the building process.
 
 
 # Usage
 
 A small script has been provided to make using the container a little easier.
-It's located at the folder `scripts/run.sh`.
+It's located at the folder `./externals/STK1AW32SC/run.sh` which is a modified version of the one at `./scripts/run.sh`.
+
+This modified script uses the `data only` container defined exclusively for this `STK1AW32SC` and produces the output separated in the `STK1AW32SC` folders.
 
 Then you can use usual commands like this:
 
 ``` shell
-./scripts/run.sh make menuconfig
-./scripts/run.sh make linux-rebuild
-./scripts/run.sh make linux-menuconfig
-./scripts/run.sh make all
+./externals/STK1AW32SC/run.sh make menuconfig
+./externals/STK1AW32SC/run.sh make linux-rebuild
+./externals/STK1AW32SC/run.sh make linux-menuconfig
+./externals/STK1AW32SC/run.sh make all
 ```
 
 
@@ -78,19 +82,9 @@ This software is licensed under MIT License.
 &copy; 2022 Mauricio Vidal.
 
 [docker_buildroot]:https://github.com/vidalastudillo/docker-buildroot
-[acs]:http://advancedclimate.nl
+[original_docker_buildroot_repo]:https://github.com/AdvancedClimateSystems/docker-buildroot
 [buildroot]:http://buildroot.uclibc.org/
 [data-only]:https://docs.docker.com/userguide/dockervolumes/
-[hub]:https://hub.docker.com/r/advancedclimatesystems/docker-buildroot/builds/
-[docker_python3_defconfig]:external/configs/docker_python3_defconfig
-[external_tree]:external
-[external_tree_doc]:external/README.md
 [journey]:the_journey.md
 [br2_external]:http://buildroot.uclibc.org/downloads/manual/manual.html#outside-br-custom
-[docker_blog]:https://blog.docker.com/2013/06/create-light-weight-docker-containers-buildroot/
-[migrating_buildroot]:http://buildroot.uclibc.org/downloads/manual/manual.html#migrating-from-ol-versions
-[evgueni]:https://forums.raspberrypi.com/memberlist.php?mode=viewprofile&u=208985&sid=be8a772e5aef87a4991576d69e510cce
-[evgueni_post]:https://forums.raspberrypi.com/viewtopic.php?t=307052&sid=b8bbc7d25cf2b58cb6d4a35edd716d6a
-[github_ssh]:https://docs.github.com/en/authentication/connecting-to-github-with-ssh
-[buildroot_generic_package]:https://buildroot.org/downloads/manual/manual.html#generic-package-reference
 [is_spec]:https://ark.intel.com/content/www/us/en/ark/products/91065/intel-compute-stick-stk1aw32sc.html
