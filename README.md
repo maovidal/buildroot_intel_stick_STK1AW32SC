@@ -20,7 +20,7 @@ git clone https://github.com/vidalastudillo/docker-buildroot
 2. Get a clone of this repo to be placed at the folder `externals/STK1AW32SC`:
 
 ``` shell
-git clone https://github.com/MrMauro/buildroot_intel_stick_STK1AW32SC externals/STK1AW32SC
+git clone https://github.com/maovidal/buildroot_intel_stick_STK1AW32SC externals/STK1AW32SC
 ```
 
 3. Build the Docker image:
