@@ -1,9 +1,9 @@
-# Notice:
+# Notice
 
 The sole purpose of this repository is to generate an image based on `buildroot 2021.11.1` that can be flashed on the internal eMMC of the `Intel Stick STK1AW32SC`, which is based on [Intel Atom x5-Z8300][is_spec]
 
 
-# Quick setup:
+# Quick setup
 
 Besides using this repo in your existing Buildroot installation using the [external mechanism][br2_external], there is also the option to use this [docker-buildroot repo][docker_buildroot] that provides a fast and convenient way to start working right away.
 
@@ -73,7 +73,7 @@ Read about the steps I took to achieve the purpose of this fork on the file [the
 
 # License
 
-This software is licensed under Mozilla Public License.
+This software is licensed under MIT License.
 
 &copy; 2022 Mauricio Vidal.
 
