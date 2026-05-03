@@ -11,7 +11,7 @@ Besides using this repo in your existing Buildroot installation using the [exter
 
 Those are the instructions for the later case, as the ones to use your existing Buildroot installation are contained in Buildroot's documentation:
 
-1. Get a clone of [docker-buildroot][docker_buildroot]:
+1. Get a clone of [docker-buildroot][docker_buildroot], if not already present in your system:
 
 ``` shell
 git clone https://github.com/vidalastudillo/docker-buildroot
@@ -23,7 +23,7 @@ git clone https://github.com/vidalastudillo/docker-buildroot
 git clone https://github.com/maovidal/buildroot_intel_stick_STK1AW32SC externals/STK1AW32SC
 ```
 
-3. Build the Docker image:
+3. Build the Docker image, if not already present in your system:
 
 ``` shell
 docker build -t "advancedclimatesystems/buildroot" .
