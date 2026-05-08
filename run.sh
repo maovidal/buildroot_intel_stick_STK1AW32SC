@@ -28,7 +28,7 @@ DOCKER_RUN="docker run
     -e CCACHE_MAXSIZE=$CCACHE_LIMIT
     -e CCACHE_BASEDIR=/workspace
     -e CCACHE_COMPILERCHECK=content
-    -v $(pwd)/buildroot:$BUILDROOT_DIR
+    -v $(pwd)/buildroot:$BUILDROOT_DIR:ro
     -v $(pwd)/externals:$EXTERNAL_TREES_DIR
     -v $(pwd)/images/STK1AW32SC:$OUTPUT_DIR/images
     -v $(pwd)/target/STK1AW32SC:$OUTPUT_DIR/target
